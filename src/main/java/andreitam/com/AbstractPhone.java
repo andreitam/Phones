@@ -32,10 +32,9 @@ public abstract class AbstractPhone implements Phone {
     }
 
     @Override
-    public void listContacts() {
-        for (Contact contact: contacts) {
-            System.out.println(contact);
-        }
+    public List<Contact> listContacts() {
+        List<Contact> contactsList = new ArrayList<>(this.contacts);
+        return contactsList;
     }
 
     @Override
@@ -71,15 +70,18 @@ public abstract class AbstractPhone implements Phone {
     }
 
     @Override
-    public void listMessages(String phoneNumber) {
-        System.out.println("You sent the following mesages to " + phoneNumber+" :");
+    public List<String> listMessages(String phoneNumber) {
+        List<String> listMessages = new ArrayList<>();
+        //System.out.println("You sent the following mesages to " + phoneNumber+" :");
             for(Contact contact: contacts) {
                 if (contact.phoneNumber.equals(phoneNumber)) {//search for contact
                     for (String s: contact.contactMessageHistory ) {
-                        System.out.println(s);//print list
+                        //System.out.println(s);//print list
+                        listMessages.add(s);
                     }
                 }
             }
+         return listMessages;
     }
 
     @Override
@@ -100,10 +102,9 @@ public abstract class AbstractPhone implements Phone {
     }
 
     @Override
-    public void viewHistory() {
-        System.out.println("Call history:");
-        for (Map.Entry<String,Integer> entry : callHistory.entrySet())
-            System.out.println("You called " + entry.getKey() + ", " + entry.getValue()+" times.");
+    public Map<String,Integer> viewHistory() {
+        Map<String,Integer> historyMap = new HashMap<>(callHistory);
+        return historyMap;
     }
 
     public Integer getRemainingBatteryLife() {

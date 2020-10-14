@@ -1,4 +1,8 @@
 package andreitam.com;
+
+import java.util.List;
+import java.util.Map;
+
 /**
  * Phone interface
  *
@@ -8,9 +12,9 @@ package andreitam.com;
  */
 public interface Phone {
     void addContact(String currentNumber, String phoneNumber, String firstName, String lastName);
-    void listContacts();
+    List listContacts();
     void sendMessage(String phoneNumber, String message);
-    void listMessages(String phoneNumber);
+    List listMessages(String phoneNumber);
     void call(String phoneNumber);
-    void viewHistory();
+    Map viewHistory();
 }
